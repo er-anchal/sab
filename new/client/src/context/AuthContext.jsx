@@ -14,14 +14,14 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const { data } = await axios.post('http://127.0.0.1:27017/api/auth/login', { email, password });
+    const { data } = await axios.post('http://localhost:5000/api/auth/login', { email, password });
     localStorage.setItem('userInfo', JSON.stringify(data));
     setUser(data);
     return data;
   };
 
   const signup = async (username, email, password) => {
-    const { data } = await axios.post('http://127.0.0.1:27017/api/auth/signup', { username, email, password });
+    const { data } = await axios.post('http://localhost:5000/api/auth/signup', { username, email, password });
     localStorage.setItem('userInfo', JSON.stringify(data));
     setUser(data);
     return data;
@@ -38,5 +38,6 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
 
 export const useAuth = () => useContext(AuthContext);
